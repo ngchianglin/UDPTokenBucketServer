@@ -30,17 +30,18 @@
 #
 
 CC=gcc
-CFLAGS= -c 
+CFLAGS= -Wall -Wextra -Wformat=2 -fPIE -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -Wl,-z,relro -Wl,-z,now
+OFLAGS= -c 
 LFLAGS= -lpthread
 OBJS=bucketserver.o hashtable.o queue.o ip4bucket.o 
 
 all: tbserver
 
 tbserver: $(OBJS)
-	$(CC) $(OBJS) -o tbserver $(LFLAGS)
+	$(CC) $(CFLAGS) $(OBJS) -o tbserver $(LFLAGS)
 
 %.o : %.c ratelimit.h
-	$(CC) $(CFLAGS) -o $@ $<
+	$(CC) $(CFLAGS) $(OFLAGS) -o $@ $<
 
 clean:
 	rm -f tbserver

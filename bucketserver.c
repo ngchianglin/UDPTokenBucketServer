@@ -234,7 +234,7 @@ Loops through all the ipv4 buckets
 in the hashtable and refill their
 token according to the configured rate
 */
-void *update(void *arg)
+void *update(__attribute__((unused))void *arg)
 {
    struct ip4bucket *ipb;
    size_t i;
@@ -276,7 +276,7 @@ void *update(void *arg)
 }
 
 
-int main(int argc, char* argv[])
+int main(__attribute__((unused))int argc, __attribute__((unused))char* argv[])
 {
 
   char *LISTEN_HOST="localhost";
