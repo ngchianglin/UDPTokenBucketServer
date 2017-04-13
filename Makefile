@@ -30,9 +30,9 @@
 #
 
 CC=gcc
-CFLAGS= -Wall -Wextra -Wformat=2 -fPIE -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -Wl,-z,relro -Wl,-z,now
+CFLAGS= -Wall -Wextra -Wformat=2 -fPIE -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong 
 OFLAGS= -c 
-LFLAGS= -lpthread
+LFLAGS= -lpthread -Wl,-z,relro -Wl,-z,now
 OBJS=bucketserver.o hashtable.o queue.o ip4bucket.o 
 
 all: tbserver
@@ -43,8 +43,12 @@ tbserver: $(OBJS)
 %.o : %.c ratelimit.h
 	$(CC) $(CFLAGS) $(OFLAGS) -o $@ $<
 
+testclient: testclient.c
+	$(CC) $(CFLAGS) $< -o testclient $(LFLAGS)
+
 clean:
-	rm -f tbserver
+	rm -f tbserver 
+	rm -f testclient
 	rm -f *.o
 	rm -f *.gch
 
