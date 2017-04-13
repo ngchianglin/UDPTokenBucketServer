@@ -330,7 +330,12 @@ int main(__attribute__((unused))int argc, __attribute__((unused))char* argv[])
 
     //The expected correct message string
     //should not be larger than BUFSZ
-    buf[BUFSZ -1] = '\0';
+    if(num < BUFSZ)
+      buf[num] = '\0';
+    else
+      buf[BUFSZ -1] = '\0';
+
+ 
          
     qt.peer_addr = peer_addr;
     qt.peer_addr_len = peer_addr_len;
