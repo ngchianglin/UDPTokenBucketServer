@@ -41,15 +41,16 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <netdb.h>
+#include <netinet/in.h>
 #include <arpa/inet.h>
 
 
 /* Rate definitions */
 #define MAX_TOKENS 50
 
-/* 1 token refill per 1 second */
+/* 1 token refill per 3 seconds */
 #define TOKEN_REFILL 1
-#define SLEEP_INTERVAL 1
+#define SLEEP_INTERVAL 3
 
 
 /* Queue Definitions*/
