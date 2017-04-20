@@ -164,6 +164,19 @@ struct ip4bucket *getHashItem(size_t i)
  Takes unsigned int key as parameter.
  Returns the a pointer to ip4bucket
  item if found, NULL otherwise.   
+
+ Note there can be a potential race
+ condition where a caller of this function
+ obtains a reference to a hash item, but before
+ it can use the item, another thread removes
+ the item from the hash table. 
+ In this case, this is not a critical issue. 
+ We allow this since the hash item is only 
+ meant for rate limiting. If the caller 
+ continue to use the removed hash item to 
+ decide whether access to a resource is within 
+ limit, it is alright to be slightly wrong 
+ and allow one more access.  
 */
 struct ip4bucket* get(unsigned int k)
 {
