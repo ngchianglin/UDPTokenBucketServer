@@ -24,6 +24,12 @@
 
 /*
 A test client for the UDP server
+
+For a good tutorial on network programming, refer to 
+Beej's Guide to Network Programming
+http://beej.us/guide/bgnet/ 
+
+
 Ng Chiang Lin
 April 2017
 */
@@ -149,7 +155,7 @@ int main(int argc, char* argv[])
    }
 
    memset(&hints, 0, sizeof(struct addrinfo));
-   hints.ai_family = AF_UNSPEC;    
+   hints.ai_family = AF_INET;    
    hints.ai_socktype = SOCK_DGRAM; /* Datagram socket */
 
 
