@@ -120,6 +120,11 @@ unsigned int parseIP4(const char * p)
              }
              break;
            case '.':
+             if(index == 0)
+             {
+                fprintf(stderr,"Empty octet \n");
+                return 0; 
+             }   
              octets[octnum][index] = '\0';
              octnum ++;
              index = 0; 
@@ -139,7 +144,10 @@ unsigned int parseIP4(const char * p)
    }
 
    if( !(octnum == 3 && index > 0) )
+   {
+       fprintf(stderr, "Less than 4 octets\n");
        return 0;    
+   }
    
    octets[octnum][index] = '\0';
 
