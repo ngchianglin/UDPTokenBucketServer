@@ -26,8 +26,14 @@
 /*
 A UDP server that serves token 
 using token bucket algorithm for IPv4 addresses
+
+For a good tutorial on network programming, refer to 
+Beej's Guide to Network Programming
+http://beej.us/guide/bgnet/ 
+
 Ng Chiang Lin
 April 2017
+
 */
 
 #include "ratelimit.h"
@@ -46,7 +52,7 @@ void bindSocket(const char* host, const char* port, int *serversocket)
   struct addrinfo *serverip;
  
   memset(&hints,0, sizeof(struct addrinfo));
-  hints.ai_family=AF_UNSPEC;
+  hints.ai_family=AF_INET;
   hints.ai_socktype = SOCK_DGRAM;
 
   if ((status=getaddrinfo(host, port, &hints, &serverip)) != 0)
