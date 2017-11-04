@@ -32,7 +32,7 @@
 CC=cc
 CFLAGS= -Wall -Wextra -Wformat=2 -fPIE -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong 
 OFLAGS= -c 
-LFLAGS= -lpthread -Wl,-z,relro -Wl,-z,now -Wl,--strip-all
+LFLAGS= -pie -lpthread -Wl,-z,relro -Wl,-z,now -Wl,--strip-all
 OBJS=bucketserver.o hashtable.o queue.o ip4bucket.o 
 
 all: tbserver
